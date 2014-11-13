@@ -17,12 +17,32 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CustomerScreen"
+            android:name=".CustomerScreenActivity"
             android:label="@string/title_activity_customer_screen" >
         </activity>
         <activity
-            android:name=".CreateAccount"
+            android:name=".CreateAccountActivity"
             android:label="@string/title_activity_create_account" >
+        </activity>
+        <activity
+            android:name=".OrderActivity"
+            android:label="@string/title_activity_order" >
+        </activity>
+        <activity
+            android:name=".OrderHistoryActivity"
+            android:label="@string/title_activity_order_history" >
+        </activity>
+        <activity
+            android:name=".MenuActivity"
+            android:label="@string/title_activity_menu" >
+        </activity>
+        <activity
+            android:name=".DailySpecialActivity"
+            android:label="@string/title_activity_daily_special" >
+        </activity>
+        <activity
+            android:name=".CertificateActivity"
+            android:label="@string/title_activity_certificate" >
         </activity>
     </application>
 

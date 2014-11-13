@@ -1,6 +1,5 @@
 package com.example.pizzaapplication.app;
 
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,7 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 
 
-public class MainActivity extends ActionBarActivity {
+public class CreateAccountActivity extends ActionBarActivity {
 
     private EditText userName;
     private EditText password;
@@ -17,17 +16,16 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_create_account);
         userName = (EditText)findViewById(R.id.userName);
         password = (EditText)findViewById(R.id.password);
-
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.create_account, menu);
         return true;
     }
 
@@ -43,24 +41,15 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void login(View view) {
-        //TO DO AUTHENTICATE
-        Intent intent = new Intent(this, CustomerScreenActivity.class);
-        //set customer in a state class or kiosk to logged in
-        String userNameString = userName.getText().toString();
-        String passwordString = password.getText().toString();
-        startActivity(intent);
-
+    public void save(View view){
+        //TO DO CREATE ACCOUNT IF YOU CAN
+        //String userNameString = userName.getText().toString();
+        //String passwordString = password.getText().toString();
+        //authenticate error if it already exists
+        finish();
     }
 
-    public void nonUser(View view) {
-        Intent intent = new Intent(this, CustomerScreenActivity.class);
-        //set customer to null
-        startActivity(intent);
-    }
-
-    public void createAccount(View view) {
-        Intent intent = new Intent(this, CreateAccountActivity.class);
-        startActivity(intent);
+    public void cancel(View view){
+        finish();
     }
 }

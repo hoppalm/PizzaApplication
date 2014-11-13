@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-public class CustomerScreen extends ActionBarActivity {
+public class CustomerScreenActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,14 +51,19 @@ public class CustomerScreen extends ActionBarActivity {
     }
 
     public void placeOrder(View view) {
+        Intent intent = new Intent(this, OrderActivity.class);
+        startActivity(intent);
     }
 
     public void orderHistory(View view) {
+        Intent intent = new Intent(this, OrderHistoryActivity.class);
+        startActivity(intent);
     }
 
     public void logout(View view) {
         //TO DO LOG OUT OF ACCOUNT
         //set customer to null
+        //customer = null;
         finish();
     }
 }
