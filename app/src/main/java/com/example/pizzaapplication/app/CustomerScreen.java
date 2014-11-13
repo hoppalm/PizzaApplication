@@ -4,6 +4,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class CustomerScreen extends ActionBarActivity {
@@ -32,5 +33,16 @@ public class CustomerScreen extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void placeOrder(View view) {
+    }
+
+    public void orderHistory(View view) {
+    }
+
+    public void logout(View view) {
+        //TO DO LOG OUT OF ACCOUNT
+        finish();
     }
 }

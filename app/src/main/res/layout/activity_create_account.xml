@@ -22,14 +22,16 @@
             android:id="@+id/saveButton"
             android:width="100dp"
             android:layout_alignParentBottom="true" android:layout_alignLeft="@+id/createPassword"
-            android:layout_marginBottom="98dp"/>
+            android:layout_marginBottom="98dp"
+            android:onClick="save"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cancel"
             android:id="@+id/cancelButton"
             android:width="100dp" android:layout_alignTop="@+id/saveButton"
-            android:layout_alignRight="@+id/createPassword"/>
+            android:layout_alignRight="@+id/createPassword"
+            android:onClick="cancel"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

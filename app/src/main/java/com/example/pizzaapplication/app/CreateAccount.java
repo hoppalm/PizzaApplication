@@ -4,6 +4,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class CreateAccount extends ActionBarActivity {
@@ -32,5 +33,14 @@ public class CreateAccount extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void save(View view){
+        //TO DO CREATE ACCOUNT IF YOU CAN
+        finish();
+    }
+
+    public void cancel(View view){
+        finish();
     }
 }

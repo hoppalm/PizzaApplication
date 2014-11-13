@@ -43,6 +43,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void nonUser(View view) {
+        //TO DO START NON USER ACCOUNT
         //Intent intent = new Intent(this, CustomerScreen.class);
         //startActivity(intent);
     }
