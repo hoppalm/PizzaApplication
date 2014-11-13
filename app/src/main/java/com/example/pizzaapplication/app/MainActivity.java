@@ -6,14 +6,21 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    private EditText userName;
+    private EditText password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        userName = (EditText)findViewById(R.id.userName);
+        password = (EditText)findViewById(R.id.password);
+
     }
 
 
@@ -39,13 +46,17 @@ public class MainActivity extends ActionBarActivity {
     public void login(View view) {
         //TO DO AUTHENTICATE
         Intent intent = new Intent(this, CustomerScreen.class);
+        //set customer in a state class or kiosk to logged in
+        String userNameString = userName.getText().toString();
+        String passwordString = password.getText().toString();
         startActivity(intent);
+
     }
 
     public void nonUser(View view) {
-        //TO DO START NON USER ACCOUNT
-        //Intent intent = new Intent(this, CustomerScreen.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, CustomerScreen.class);
+        //set customer to null
+        startActivity(intent);
     }
 
     public void createAccount(View view) {

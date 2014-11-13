@@ -23,17 +23,22 @@
             android:id="@+id/orderHistoryButton"
             android:width="200dp" android:layout_below="@+id/textView" android:layout_centerHorizontal="true"
             android:layout_marginTop="43dp"
-            android:onClick="orderHistory"/>
+            android:onClick="orderHistory"
+            android:clickable = "true"/>
+
     <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Place Order"
             android:id="@+id/placeOrderButton"
             android:width="200dp"
             android:layout_centerVertical="true" android:layout_alignLeft="@+id/orderHistoryButton"
-            android:onClick="placeOrder"/>
+            android:onClick="placeOrder"
+            android:clickable = "true"/>
+
     <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Log Out"
             android:id="@+id/logOutButton" android:width="200dp"
             android:layout_above="@+id/textView2" android:layout_alignLeft="@+id/placeOrderButton"
             android:layout_marginBottom="57dp"
-            android:onClick="logout"/>
+            android:onClick="logout"
+            android:clickable = "true"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

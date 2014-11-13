@@ -5,14 +5,20 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
 
 public class CreateAccount extends ActionBarActivity {
+
+    private EditText userName;
+    private EditText password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
+        userName = (EditText)findViewById(R.id.userName);
+        password = (EditText)findViewById(R.id.password);
     }
 
 
@@ -37,6 +43,9 @@ public class CreateAccount extends ActionBarActivity {
 
     public void save(View view){
         //TO DO CREATE ACCOUNT IF YOU CAN
+        String userNameString = userName.getText().toString();
+        String passwordString = password.getText().toString();
+        //authenticate error if it already exists
         finish();
     }
 

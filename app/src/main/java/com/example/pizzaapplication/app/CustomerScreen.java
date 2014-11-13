@@ -1,10 +1,13 @@
 package com.example.pizzaapplication.app;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 
 public class CustomerScreen extends ActionBarActivity {
@@ -13,6 +16,18 @@ public class CustomerScreen extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_screen);
+        //if customer is null set order history button/log out to inactive
+        /*if (kiosk.getLoggedInUser() == NULL) {
+        Button orderHistoryButton = (Button) findViewById(R.id.orderHistoryButton);
+        orderHistoryButton.setEnabled(false);
+
+        Button logoutButton = (Button) findViewById(R.id.logOutButton);
+        logoutButton.setEnabled(false);
+
+        TextView text = (TextView) findViewById(R.id.rewardPoints);
+        text.setText(String.getValue(customer.getRewardsPoint());
+        }
+        */
     }
 
 
@@ -43,6 +58,7 @@ public class CustomerScreen extends ActionBarActivity {
 
     public void logout(View view) {
         //TO DO LOG OUT OF ACCOUNT
+        //set customer to null
         finish();
     }
 }
