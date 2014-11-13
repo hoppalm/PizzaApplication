@@ -17,6 +17,7 @@
             android:layout_marginTop="97dp"
             android:clickable="false" android:textIsSelectable="true" android:text="UserName"
             android:layout_alignParentTop="true" android:layout_alignLeft="@+id/password"/>
+
     <EditText android:layout_width="wrap_content" android:layout_height="wrap_content"
               android:inputType="textPersonName" android:ems="10" android:id="@+id/password"
               android:layout_marginTop="35dp" android:clickable="false"
@@ -35,18 +36,19 @@
             android:text="Login"
             android:id="@+id/loginButton"
             android:layout_marginTop="55dp"
-            android:layout_below="@+id/password" android:layout_alignLeft="@+id/password" android:width="100dp"/>
+            android:layout_below="@+id/password" android:layout_alignLeft="@+id/password" android:width="100dp"
+            android:onClick="login"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Non User"
             android:id="@+id/nonUserButton"
             android:layout_alignTop="@+id/loginButton" android:layout_alignRight="@+id/password"
-            android:width="100dp"/>
+            android:width="100dp"
+            android:onClick="nonUser"/>
     <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Create Account"
             android:id="@+id/createAccountButton"
             android:layout_marginBottom="60dp"
-            android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"/>
-
-
+            android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"
+            android:onClick="createAccount"/>
 </RelativeLayout>
