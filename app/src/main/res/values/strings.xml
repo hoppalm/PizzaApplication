@@ -11,5 +11,6 @@
     <string name="title_activity_menu">MenuActivity</string>
     <string name="title_activity_daily_special">DailySpecialActivity</string>
     <string name="title_activity_certificate">CertificateActivity</string>
+    <string name="spinner_title">Quantity</string>
 
 </resources>
