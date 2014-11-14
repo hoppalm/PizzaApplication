@@ -9,6 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import com.example.pizzaapplication.test.OrderItem;
+import com.example.pizzaapplication.test.OrderObservable;
 import com.example.pizzaapplication.test.PizzaMenuItem;
 
 import java.util.ArrayList;
@@ -16,13 +18,22 @@ import java.util.List;
 
 public class MenuActivity extends ActionBarActivity {
 
-    List<PizzaMenuItem> items;
+    private List<PizzaMenuItem> items;
+
+    private OrderObservable orderObservable;
+
+    private PizzaMenuItem currentMenuItem;
+
+    private int quantity = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         ListView listView = (ListView) findViewById(R.id.menuList);
+
+        orderObservable = orderObservable.getInstance();
+        //orderObservable.Update();
 
         //TODO add in real menu items
         items = new ArrayList<>();
@@ -35,7 +46,7 @@ public class MenuActivity extends ActionBarActivity {
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
 
 
-        List<String> quantities = new ArrayList<String>();
+        final List<String> quantities = new ArrayList<String>();
         quantities.add("1");
         quantities.add("2");
         quantities.add("3");
@@ -57,18 +68,21 @@ public class MenuActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,long arg3) {
                 view.setSelected(true);
+                currentMenuItem = items.get(position);
+                System.out.println(currentMenuItem);
             }
         });
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                quantity = Integer.parseInt(quantities.get(position));
+                System.out.println("Quantity is: " + quantity);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                quantity = 1;
             }
         });
     }
@@ -98,7 +112,9 @@ public class MenuActivity extends ActionBarActivity {
     }
 
     public void addItem(View view) {
-        //TODO handling adding items
+        //TODO nothing selected
+        if(currentMenuItem != null)
+            orderObservable.addOrderItem(new OrderItem(currentMenuItem,quantity));
         finish();
     }
 }

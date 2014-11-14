@@ -6,16 +6,56 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import com.example.pizzaapplication.test.OrderItem;
+import com.example.pizzaapplication.test.OrderObservable;
+
+import java.util.Observable;
+import java.util.Observer;
 
 
-public class OrderActivity extends ActionBarActivity {
+public class OrderActivity extends ActionBarActivity implements Observer {
+
+    public OrderObservable orderObservable;
+    private ArrayAdapter<OrderItem> adapter;
+    private ListView listView;
+    private int removePosition = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
+        orderObservable = orderObservable.getInstance();
+        makeOrderItemTable();
+        orderObservable.addObserver(this);
     }
 
+    public void makeOrderItemTable(){
+        removePosition = -1;
+        listView = (ListView) findViewById(R.id.orderItems);
+        adapter= new ArrayAdapter<OrderItem>(this, R.layout.simple_list_item_1 , orderObservable.getOrder().getItems());
+
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,long arg3) {
+                view.setSelected(true);
+                removePosition = position;
+
+            }
+        });
+    }
+
+
+    @Override
+    public void update(Observable observable, Object data) {
+        System.out.println("DEBUG: It was updated!");
+        makeOrderItemTable();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -49,11 +89,5 @@ public class OrderActivity extends ActionBarActivity {
     public void redeemCertificate(View view) {
         Intent intent = new Intent(this, CertificateActivity.class);
         startActivity(intent);
-    }
-
-    @Override
-    public void onResume(){
-        super.onResume();
-        //TODO ADD RECREATING VIEW/LIST OF ITEMS
     }
 }

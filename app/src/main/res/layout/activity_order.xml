@@ -12,7 +12,7 @@
         <ListView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/listView"
+                android:id="@+id/orderItems"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginBottom="150dp"
@@ -51,8 +51,8 @@
                 android:layout_height="wrap_content"
                 android:text="Remove"
                 android:id="@+id/button"
-                android:layout_below="@+id/textView2" android:layout_alignRight="@+id/listView"
-                android:layout_alignEnd="@+id/listView" android:layout_marginTop="28dp"/>
+                android:layout_below="@+id/textView2" android:layout_alignRight="@+id/orderItems"
+                android:layout_alignEnd="@+id/orderItems" android:layout_marginTop="28dp"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

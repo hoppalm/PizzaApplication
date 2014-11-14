@@ -13,6 +13,18 @@ public class DailySpecial {
         this.items = items;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public List<PizzaMenuItem> getItems() {
+        return items;
+    }
+
     @Override
     public String toString() {
         String output = "";
@@ -23,4 +35,5 @@ public class DailySpecial {
         output += "] $" + String.valueOf(price);
         return output;
     }
+
 }
