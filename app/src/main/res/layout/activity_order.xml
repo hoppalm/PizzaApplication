@@ -50,7 +50,8 @@
         <Button style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Remove"
-                android:id="@+id/button"
+                android:id="@+id/removeButton"
+                android:onClick="removeButton"
                 android:layout_below="@+id/textView2" android:layout_alignRight="@+id/orderItems"
                 android:layout_alignEnd="@+id/orderItems" android:layout_marginTop="28dp"/>
         <TextView

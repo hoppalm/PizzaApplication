@@ -39,10 +39,10 @@ public class OrderActivity extends ActionBarActivity implements Observer {
 
         listView.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,long arg3) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long arg3) {
                 view.setSelected(true);
                 removePosition = position;
 
@@ -89,5 +89,11 @@ public class OrderActivity extends ActionBarActivity implements Observer {
     public void redeemCertificate(View view) {
         Intent intent = new Intent(this, CertificateActivity.class);
         startActivity(intent);
+    }
+
+    public void removeButton(View view) {
+        if(removePosition >= 0)
+            orderObservable.getOrder().getItems().remove(removePosition);
+        makeOrderItemTable();
     }
 }
