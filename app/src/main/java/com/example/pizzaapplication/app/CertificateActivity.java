@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.example.pizzaapplication.test.Coupon;
+import com.example.pizzaapplication.test.OrderObservable;
 import com.example.pizzaapplication.test.PizzaMenuItem;
 
 
@@ -18,12 +19,19 @@ import java.util.List;
 
 public class CertificateActivity extends ActionBarActivity {
 
-    List<Coupon> items;
+    private List<Coupon> items;
+
+    private OrderObservable orderObservable;
+
+    private Coupon currentCoupon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_certificate);
+
+        orderObservable = orderObservable.getInstance();
+
         //TODO set reward points
         ListView listView = (ListView) findViewById(R.id.certList);
 
@@ -53,6 +61,7 @@ public class CertificateActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,long arg3) {
                 view.setSelected(true);
+                currentCoupon = items.get(position);
             }
         });
 
@@ -83,7 +92,10 @@ public class CertificateActivity extends ActionBarActivity {
     }
 
     public void redeemCertificate(View view) {
-        //TODO implement redeeming
+        //TODO null handling
+        if (currentCoupon != null){
+            orderObservable.addCoupon(currentCoupon);
+        }
         finish();
     }
 }

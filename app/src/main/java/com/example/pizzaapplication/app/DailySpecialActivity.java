@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 
 import android.widget.ListView;
 import com.example.pizzaapplication.test.DailySpecial;
+import com.example.pizzaapplication.test.OrderObservable;
 import com.example.pizzaapplication.test.PizzaMenuItem;
 
 import java.util.ArrayList;
@@ -18,7 +19,11 @@ import java.util.List;
 
 public class DailySpecialActivity extends ActionBarActivity {
 
-    List<DailySpecial> dailySpecialList;
+    private List<DailySpecial> dailySpecialList;
+
+    private OrderObservable orderObservable;
+
+    private DailySpecial currentDailySpecial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +31,8 @@ public class DailySpecialActivity extends ActionBarActivity {
         setContentView(R.layout.activity_daily_special);
 
         ListView listView = (ListView) findViewById(R.id.specialList);
+
+        orderObservable = orderObservable.getInstance();
 
         //TODO add in real specials
 
@@ -62,6 +69,7 @@ public class DailySpecialActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,long arg3) {
                 view.setSelected(true);
+                currentDailySpecial = dailySpecialList.get(position);
             }
         });
     }
@@ -87,7 +95,10 @@ public class DailySpecialActivity extends ActionBarActivity {
     }
 
     public void orderSpecial(View view) {
-        //TODO order special and add order items to list to order
+        //TODO check if special is null
+        if (currentDailySpecial != null){
+            orderObservable.addDailySpecial(currentDailySpecial);
+        }
         finish();
     }
 

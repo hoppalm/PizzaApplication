@@ -10,10 +10,12 @@ public class OrderObservable extends Observable {
 
     private Order order;
     private List<DailySpecial> dailySpecials;
+    private List<Coupon> coupons;
 
     private OrderObservable() {
         order = new Order();
         dailySpecials = new ArrayList<>();
+        coupons = new ArrayList<>();
     }
 
     public static OrderObservable getInstance() {
@@ -35,10 +37,12 @@ public class OrderObservable extends Observable {
         }
         triggerObservers();
     }
-    //testing purposes
-    public void Update(){
-        triggerObservers();
+
+    public void addCoupon(Coupon coupon){
+        coupons.add(coupon);
+        addOrderItem(new OrderItem(coupon.getMenuItem(), 1));
     }
+
 
 
     private void triggerObservers() {
@@ -60,5 +64,13 @@ public class OrderObservable extends Observable {
 
     public void setDailySpecials(List<DailySpecial> dailySpecials) {
         this.dailySpecials = dailySpecials;
+    }
+
+    public List<Coupon> getCoupons() {
+        return coupons;
+    }
+
+    public void setCoupons(List<Coupon> coupons) {
+        this.coupons = coupons;
     }
 }

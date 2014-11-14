@@ -33,7 +33,6 @@ public class MenuActivity extends ActionBarActivity {
         ListView listView = (ListView) findViewById(R.id.menuList);
 
         orderObservable = orderObservable.getInstance();
-        //orderObservable.Update();
 
         //TODO add in real menu items
         items = new ArrayList<>();

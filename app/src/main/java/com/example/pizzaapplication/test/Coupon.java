@@ -14,4 +14,20 @@ public class Coupon {
     public String toString() {
         return menuItem.getName() + "-" + rewardPoints +" points";
     }
+
+    public PizzaMenuItem getMenuItem() {
+        return menuItem;
+    }
+
+    public void setMenuItem(PizzaMenuItem menuItem) {
+        this.menuItem = menuItem;
+    }
+
+    public int getRewardPoints() {
+        return rewardPoints;
+    }
+
+    public void setRewardPoints(int rewardPoints) {
+        this.rewardPoints = rewardPoints;
+    }
 }
