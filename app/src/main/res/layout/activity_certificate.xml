@@ -8,9 +8,52 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.pizzaapplication.app.CertificateActivity">
 
+    <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/certList"
+            android:layout_below="@+id/textView" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" android:layout_marginTop="45dp"
+            android:layout_above="@+id/cancelButton">
+    </ListView>
+
     <TextView
-        android:text="@string/hello_world"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Certificates"
+            android:id="@+id/textView" android:layout_alignParentTop="true" android:layout_centerHorizontal="true"/>
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Redeem"
+            android:id="@+id/redeemButton"
+            android:width="150dp"
+            android:layout_below="@+id/certList" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:onClick="redeemCertificate"/>
+
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cancel"
+            android:id="@+id/cancelButton"
+            android:width="150dp"
+            android:layout_alignParentBottom="true" android:layout_alignRight="@+id/certList"
+            android:layout_alignEnd="@+id/certList"
+            android:onClick="cancel"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Reward Points:"
+            android:id="@+id/textView3"
+            android:layout_below="@+id/textView" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" android:layout_marginTop="15dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="0"
+            android:id="@+id/rewardPoints" android:layout_alignBottom="@+id/textView3"
+            android:layout_toRightOf="@+id/redeemButton" android:layout_toEndOf="@+id/redeemButton"/>
 
 </RelativeLayout>

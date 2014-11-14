@@ -1,7 +1,7 @@
-package com.example.pizzaapplication.app;
+package com.example.pizzaapplication.test;
 
 
-    //delete later, JUST FOR TESTING PURPOSE!!!!!!
+    //TODO delete later, JUST FOR TESTING PURPOSE!!!!!!
     public class PizzaMenuItem {
         private String name;
         private int price;

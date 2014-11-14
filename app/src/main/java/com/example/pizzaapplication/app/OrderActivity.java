@@ -40,4 +40,14 @@ public class OrderActivity extends ActionBarActivity {
         Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
     }
+
+    public void addDailySpecial(View view) {
+        Intent intent = new Intent(this, DailySpecialActivity.class);
+        startActivity(intent);
+    }
+
+    public void redeemCertificate(View view) {
+        Intent intent = new Intent(this, CertificateActivity.class);
+        startActivity(intent);
+    }
 }

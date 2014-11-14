@@ -9,10 +9,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import com.example.pizzaapplication.test.PizzaMenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 public class MenuActivity extends ActionBarActivity {
 
@@ -24,6 +24,7 @@ public class MenuActivity extends ActionBarActivity {
         setContentView(R.layout.activity_menu);
         ListView listView = (ListView) findViewById(R.id.menuList);
 
+        //TODO add in real menu items
         items = new ArrayList<>();
         items.add(new PizzaMenuItem("","pizza",10));
         items.add(new PizzaMenuItem("meat everyone","meat pizza",8));
@@ -40,6 +41,7 @@ public class MenuActivity extends ActionBarActivity {
         quantities.add("3");
         quantities.add("4");
         quantities.add("5");
+
         ArrayAdapter<String> dataAdapter= new ArrayAdapter<String>(this, R.layout.simple_spinner_item , quantities);
 
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -89,5 +91,14 @@ public class MenuActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void cancel(View view) {
+        finish();
+    }
+
+    public void addItem(View view) {
+        //TODO handling adding items
+        finish();
     }
 }
