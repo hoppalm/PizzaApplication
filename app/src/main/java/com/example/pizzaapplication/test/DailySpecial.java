@@ -13,4 +13,14 @@ public class DailySpecial {
         this.items = items;
     }
 
+    @Override
+    public String toString() {
+        String output = "";
+        output += "[";
+        for (PizzaMenuItem menuItem : this.items){
+            output += menuItem.getName() + ", ";
+        }
+        output += "] $" + String.valueOf(price);
+        return output;
+    }
 }

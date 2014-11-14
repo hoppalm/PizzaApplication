@@ -50,4 +50,10 @@ public class OrderActivity extends ActionBarActivity {
         Intent intent = new Intent(this, CertificateActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        //TODO ADD RECREATING VIEW/LIST OF ITEMS
+    }
 }

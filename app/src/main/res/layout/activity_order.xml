@@ -28,7 +28,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginBottom="100dp"
-                android:width="115dp"/>
+                android:width="100dp"/>
         <Button style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add Special"
