@@ -12,5 +12,6 @@
     <string name="title_activity_daily_special">DailySpecialActivity</string>
     <string name="title_activity_certificate">CertificateActivity</string>
     <string name="spinner_title">Quantity</string>
+    <string name="title_activity_order_information">OrderInformationActivity</string>
 
 </resources>

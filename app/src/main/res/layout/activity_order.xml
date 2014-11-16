@@ -89,6 +89,17 @@
                 android:layout_alignTop="@+id/textView3"
                 android:layout_alignRight="@+id/placeOrderButton"
                 android:layout_alignEnd="@+id/placeOrderButton"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:textAppearance="?android:attr/textAppearanceMedium" android:text="Reward Points:"
+                  android:id="@+id/textView"
+                  android:layout_alignTop="@+id/rewardPoints" android:layout_alignParentLeft="true"
+                  android:layout_alignParentStart="true"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:textAppearance="?android:attr/textAppearanceMedium" android:text="0"
+                  android:id="@+id/rewardPoints"
+                  android:layout_alignLeft="@+id/placeOrderButton"
+                  android:layout_alignStart="@+id/placeOrderButton" android:layout_alignTop="@+id/removeButton"
+                  android:layout_alignRight="@+id/button3" android:layout_alignEnd="@+id/button3"/>
 
     </RelativeLayout>
 

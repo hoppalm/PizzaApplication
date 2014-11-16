@@ -44,6 +44,10 @@
             android:name=".CertificateActivity"
             android:label="@string/title_activity_certificate" >
         </activity>
+        <activity
+            android:name=".OrderInformationActivity"
+            android:label="@string/title_activity_order_information" >
+        </activity>
     </application>
 
 </manifest>
