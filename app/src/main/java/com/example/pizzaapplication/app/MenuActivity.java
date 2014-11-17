@@ -39,12 +39,12 @@ public class MenuActivity extends ActionBarActivity {
         //TODO add in real menu items
         kiosk = kiosk.getInstance();
         kiosk.viewMenu();
-        items = new ArrayList<>();
-        items.add(new PizzaMenuItem("pizza",10,""));
+        items =  kiosk.viewMenu();
+        /*items.add(new PizzaMenuItem("pizza",10,""));
         items.add(new PizzaMenuItem("meat pizza",8,"meat everyone"));
         items.add(new PizzaMenuItem("soda",3,""));
         items.add(new PizzaMenuItem("coke",2,"Whats the difference?"));
-        items.add(new PizzaMenuItem("cheese pizza",11,"cheesy"));
+        items.add(new PizzaMenuItem("cheese pizza",11,"cheesy"));*/
 
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
 

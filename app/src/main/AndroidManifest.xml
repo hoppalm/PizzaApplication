@@ -61,5 +61,5 @@
             android:label="@string/title_activity_check_payment" >
         </activity>
     </application>
-
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
