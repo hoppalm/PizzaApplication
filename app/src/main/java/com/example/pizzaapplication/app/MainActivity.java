@@ -16,10 +16,13 @@ public class MainActivity extends ActionBarActivity {
     private EditText password;
     private Kiosk kiosk;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public MainActivity() {
         kiosk = kiosk.getInstance();
         kiosk.initialize("http://10.0.2.2:8080/");
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         userName = (EditText)findViewById(R.id.userName);
