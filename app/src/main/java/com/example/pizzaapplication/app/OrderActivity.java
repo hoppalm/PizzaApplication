@@ -77,7 +77,10 @@ public class OrderActivity extends ActionBarActivity implements Observer {
     }
 
     public void addMenuItem(View view) {
-        Intent intent = new Intent(this, MenuActivity.class);
+        // `MenuActivity_` instead of `MenuActivity`
+        // AndroidAnnotations generates the `_` for us, but we have to call it
+        // instead of the "real" class manually
+        Intent intent = new Intent(this, MenuActivity_.class);
         startActivity(intent);
     }
 

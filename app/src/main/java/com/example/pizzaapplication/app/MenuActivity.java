@@ -13,59 +13,63 @@ import com.example.pizzaapplication.test.OrderObservable;
 import edu.colostate.cs414.d.pizza.Kiosk;
 import edu.colostate.cs414.d.pizza.api.menu.PizzaMenuItem;
 import edu.colostate.cs414.d.pizza.api.order.OrderItem;
+import org.androidannotations.annotations.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+// EActivity is the base AndroidAnnotations class
+// we can (optionally) pass the layout ID in to have it initialize it
+// for us automatically
+// note that we have to refer to this class as `MenuActivity_` instead of
+// `MenuActivity` - the '_' is the generated class with all of the annotations
+// filled in
+@EActivity(R.layout.activity_menu)
 public class MenuActivity extends ActionBarActivity {
 
-    private List<PizzaMenuItem> items;
-
+    private Kiosk kiosk;
     private OrderObservable orderObservable;
 
+    // this view will get filled in automatically for us by the time init()
+    // is called
+    @ViewById(R.id.spinner)
+    protected Spinner spinner;
+
+    @ViewById(R.id.menuList)
+    protected ListView listView;
+
+    private List<PizzaMenuItem> items;
     private PizzaMenuItem currentMenuItem;
-    private Kiosk kiosk;
 
     private int quantity = 1;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
-        ListView listView = (ListView) findViewById(R.id.menuList);
+    public MenuActivity() {
+        kiosk = Kiosk.getInstance();
+        orderObservable = OrderObservable.getInstance();
+    }
 
-        orderObservable = orderObservable.getInstance();
+    // instead of onCreate()
+    // this gets called after the annotation processor sets `spinner` and
+    // `listView` for us
+    @AfterViews
+    protected void init() {
+        // fetchMenu will request the menu in the background, and then call
+        // setMenu() with the returned items (in the UI thread)
+        fetchMenu();
 
-        //TODO add in real menu items
-        kiosk = kiosk.getInstance();
-        kiosk.viewMenu();
-        items =  kiosk.viewMenu();
-        /*items.add(new PizzaMenuItem("pizza",10,""));
-        items.add(new PizzaMenuItem("meat pizza",8,"meat everyone"));
-        items.add(new PizzaMenuItem("soda",3,""));
-        items.add(new PizzaMenuItem("coke",2,"Whats the difference?"));
-        items.add(new PizzaMenuItem("cheese pizza",11,"cheesy"));*/
-
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-
-
-        final List<String> quantities = new ArrayList<String>();
+        final List<String> quantities = new ArrayList<>();
         quantities.add("1");
         quantities.add("2");
         quantities.add("3");
         quantities.add("4");
         quantities.add("5");
 
-        ArrayAdapter<String> dataAdapter= new ArrayAdapter<String>(this, R.layout.simple_spinner_item , quantities);
-
+        ArrayAdapter<String> dataAdapter= new ArrayAdapter<>(this, R.layout.simple_spinner_item , quantities);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         spinner.setAdapter(dataAdapter);
 
-        ArrayAdapter<PizzaMenuItem> adapter= new ArrayAdapter<>(this, R.layout.simple_list_item_1 , items);
-
-        listView.setAdapter(adapter);
-
+        // could potentially use @ItemSelect here
+        // see: https://github.com/excilys/androidannotations/wiki/AdapterViewEvents
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
             @Override
@@ -89,7 +93,6 @@ public class MenuActivity extends ActionBarActivity {
             }
         });
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -120,4 +123,19 @@ public class MenuActivity extends ActionBarActivity {
             orderObservable.addOrderItem(new OrderItem(currentMenuItem,quantity));
         finish();
     }
+
+    @Background
+    public void fetchMenu() {
+        List<PizzaMenuItem> items = kiosk.viewMenu();
+        setMenu(items);
+    }
+
+    @UiThread
+    public void setMenu(List<PizzaMenuItem> items) {
+        this.items = items;
+
+        ArrayAdapter<PizzaMenuItem> adapter = new ArrayAdapter<>(this, R.layout.simple_list_item_1 , items);
+        listView.setAdapter(adapter);
+    }
+
 }
