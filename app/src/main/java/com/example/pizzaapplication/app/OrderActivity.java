@@ -96,4 +96,9 @@ public class OrderActivity extends ActionBarActivity implements Observer {
             orderObservable.getOrder().getItems().remove(removePosition);
         makeOrderItemTable();
     }
+
+    public void placeOrder(View view) {
+        Intent intent = new Intent(this, OrderInformationActivity.class);
+        startActivity(intent);
+    }
 }

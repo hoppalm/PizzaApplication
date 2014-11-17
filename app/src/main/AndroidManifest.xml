@@ -48,6 +48,18 @@
             android:name=".OrderInformationActivity"
             android:label="@string/title_activity_order_information" >
         </activity>
+        <activity
+            android:name=".CashPaymentActivity"
+            android:label="@string/title_activity_cash_payment" >
+        </activity>
+        <activity
+            android:name=".CardPaymentActivity"
+            android:label="@string/title_activity_card_payment" >
+        </activity>
+        <activity
+            android:name=".CheckPaymentActivity"
+            android:label="@string/title_activity_check_payment" >
+        </activity>
     </application>
 
 </manifest>

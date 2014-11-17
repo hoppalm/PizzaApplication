@@ -17,27 +17,99 @@
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" android:id="@+id/radioGroup">
-    </RadioGroup>
-    <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Delivery"
-            android:id="@+id/deliveryButton"
-            android:layout_marginTop="47dp"
-            android:layout_toStartOf="@+id/pickUpButton"
-            android:layout_toLeftOf="@+id/pickUpButton"
-            android:layout_below="@+id/textView"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
+                android:orientation="horizontal"
+                android:id="@+id/radioGroup"
+                android:layout_below="@+id/textView"
+                android:layout_marginTop="30dp"
+                android:layout_alignParentRight="true" android:layout_alignParentEnd="true">
     <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pick Up"
             android:id="@+id/pickUpButton"
-            android:layout_alignTop="@+id/deliveryButton" android:layout_centerHorizontal="true"/>
-    <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pick Up"
-                 android:id="@+id/radioButton3"
-                 android:layout_alignBottom="@+id/pickUpButton" android:layout_alignParentRight="true"
-                 android:layout_alignParentEnd="true"/>
+            android:checked="false"/>
+    <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delivery"
+            android:id="@+id/deliveryButton"
+            android:checked="true"/>
+    <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dine In"
+            android:id="@+id/dineInButton"
+            android:checked="false"/>
+    </RadioGroup>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Name"
+            android:id="@+id/textView2"
+            android:layout_below="@+id/radioGroup"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="45dp"/>
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textAppearance="?android:attr/textAppearanceMedium"
+              android:text="Delivery Address"
+              android:id="@+id/textView3"
+              android:layout_below="@+id/textView2"
+              android:layout_alignParentLeft="true"
+              android:layout_alignParentStart="true"
+              android:layout_marginTop="41dp"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cash"
+            android:id="@+id/cashPayment"
+            android:width="100dp"
+            android:layout_marginBottom="41dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:onClick="cashPayment"/>
+    <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Check"
+            android:id="@+id/checkPayment"
+            android:width="100dp"
+            android:layout_toEndOf="@+id/textView3"
+            android:layout_toRightOf="@+id/textView3"
+            android:layout_alignTop="@+id/cashPayment"
+            android:layout_centerHorizontal="true"
+            android:onClick="checkPayment"/>
+    <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Card"
+            android:id="@+id/cardPayment"
+            android:layout_toEndOf="@+id/textView"
+            android:layout_alignTop="@+id/checkPayment"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_toRightOf="@+id/textView"
+            android:width="100dp"
+            android:onClick="cardPayment"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Total Due"
+            android:id="@+id/textView4"
+            android:layout_toStartOf="@+id/textView"
+            android:layout_toLeftOf="@+id/textView"
+            android:layout_below="@+id/textView3"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="41dp"/>
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textAppearance="?android:attr/textAppearanceLarge"
+              android:text="Payment"
+              android:layout_marginTop="41dp"
+              android:id="@+id/textView6"
+              android:layout_below="@+id/textView4"
+              android:layout_centerHorizontal="true"/>
 </RelativeLayout>

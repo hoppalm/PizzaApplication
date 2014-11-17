@@ -13,5 +13,8 @@
     <string name="title_activity_certificate">CertificateActivity</string>
     <string name="spinner_title">Quantity</string>
     <string name="title_activity_order_information">OrderInformationActivity</string>
+    <string name="title_activity_cash_payment">CashPaymentActivity</string>
+    <string name="title_activity_card_payment">CardPaymentActivity</string>
+    <string name="title_activity_check_payment">CheckPaymentActivity</string>
 
 </resources>

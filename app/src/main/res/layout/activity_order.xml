@@ -62,12 +62,13 @@
                 android:id="@+id/textView2"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"/>
-        <Button
-                style="?android:attr/buttonStyleSmall"
+        <Button style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Place Order"
-                android:id="@+id/placeOrderButton" android:layout_alignParentBottom="true"
+                android:id="@+id/placeOrderButton"
+                android:onClick="placeOrder"
+                android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"/>
         <TextView
                 android:layout_width="wrap_content"
@@ -84,11 +85,9 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="$0"
                 android:id="@+id/totalDue"
-                android:layout_toStartOf="@+id/button4"
-                android:layout_toLeftOf="@+id/button4"
                 android:layout_alignTop="@+id/textView3"
-                android:layout_alignRight="@+id/placeOrderButton"
-                android:layout_alignEnd="@+id/placeOrderButton"/>
+                android:layout_alignRight="@+id/rewardPoints"
+                android:layout_alignEnd="@+id/rewardPoints"/>
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                   android:textAppearance="?android:attr/textAppearanceMedium" android:text="Reward Points:"
                   android:id="@+id/textView"
@@ -97,9 +96,7 @@
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                   android:textAppearance="?android:attr/textAppearanceMedium" android:text="0"
                   android:id="@+id/rewardPoints"
-                  android:layout_alignLeft="@+id/placeOrderButton"
-                  android:layout_alignStart="@+id/placeOrderButton" android:layout_alignTop="@+id/removeButton"
-                  android:layout_alignRight="@+id/button3" android:layout_alignEnd="@+id/button3"/>
+                  android:layout_alignTop="@+id/removeButton" android:layout_centerHorizontal="true"/>
 
     </RelativeLayout>
 
