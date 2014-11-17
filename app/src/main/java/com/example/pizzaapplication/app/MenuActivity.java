@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import com.example.pizzaapplication.test.OrderObservable;
+import edu.colostate.cs414.d.pizza.Kiosk;
 import edu.colostate.cs414.d.pizza.api.menu.PizzaMenuItem;
 import edu.colostate.cs414.d.pizza.api.order.OrderItem;
 
@@ -23,6 +24,7 @@ public class MenuActivity extends ActionBarActivity {
     private OrderObservable orderObservable;
 
     private PizzaMenuItem currentMenuItem;
+    private Kiosk kiosk;
 
     private int quantity = 1;
 
@@ -35,6 +37,8 @@ public class MenuActivity extends ActionBarActivity {
         orderObservable = orderObservable.getInstance();
 
         //TODO add in real menu items
+        kiosk = kiosk.getInstance();
+        kiosk.viewMenu();
         items = new ArrayList<>();
         items.add(new PizzaMenuItem("pizza",10,""));
         items.add(new PizzaMenuItem("meat pizza",8,"meat everyone"));
