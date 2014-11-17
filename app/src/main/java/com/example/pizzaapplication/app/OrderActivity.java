@@ -85,7 +85,7 @@ public class OrderActivity extends ActionBarActivity implements Observer {
     }
 
     public void addDailySpecial(View view) {
-        Intent intent = new Intent(this, DailySpecialActivity.class);
+        Intent intent = new Intent(this, DailySpecialActivity_.class);
         startActivity(intent);
     }
 
