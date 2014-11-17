@@ -1,10 +1,15 @@
 package com.example.pizzaapplication.test;
 
+import edu.colostate.cs414.d.pizza.api.menu.Coupon;
+import edu.colostate.cs414.d.pizza.api.menu.DailySpecial;
+import edu.colostate.cs414.d.pizza.api.menu.PizzaMenuItem;
+import edu.colostate.cs414.d.pizza.api.order.Order;
+import edu.colostate.cs414.d.pizza.api.order.OrderItem;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
-//ADD REFERENCE TO ORDER, COUPONS, DAILYSPECIALS
 public class OrderObservable extends Observable {
     public static OrderObservable instance;
 

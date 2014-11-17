@@ -9,9 +9,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import com.example.pizzaapplication.test.OrderItem;
 import com.example.pizzaapplication.test.OrderObservable;
-import com.example.pizzaapplication.test.PizzaMenuItem;
+import edu.colostate.cs414.d.pizza.api.menu.PizzaMenuItem;
+import edu.colostate.cs414.d.pizza.api.order.OrderItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,11 +36,11 @@ public class MenuActivity extends ActionBarActivity {
 
         //TODO add in real menu items
         items = new ArrayList<>();
-        items.add(new PizzaMenuItem("","pizza",10));
-        items.add(new PizzaMenuItem("meat everyone","meat pizza",8));
-        items.add(new PizzaMenuItem("","soda",3));
-        items.add(new PizzaMenuItem("Whats the difference?","coke",2));
-        items.add(new PizzaMenuItem("cheesy","cheese pizza",11));
+        items.add(new PizzaMenuItem("pizza",10,""));
+        items.add(new PizzaMenuItem("meat pizza",8,"meat everyone"));
+        items.add(new PizzaMenuItem("soda",3,""));
+        items.add(new PizzaMenuItem("coke",2,"Whats the difference?"));
+        items.add(new PizzaMenuItem("cheese pizza",11,"cheesy"));
 
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
 
@@ -58,7 +58,7 @@ public class MenuActivity extends ActionBarActivity {
 
         spinner.setAdapter(dataAdapter);
 
-        ArrayAdapter<PizzaMenuItem> adapter= new ArrayAdapter<PizzaMenuItem>(this, R.layout.simple_list_item_1 , items);
+        ArrayAdapter<PizzaMenuItem> adapter= new ArrayAdapter<>(this, R.layout.simple_list_item_1 , items);
 
         listView.setAdapter(adapter);
 
