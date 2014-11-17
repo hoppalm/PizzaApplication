@@ -90,7 +90,7 @@ public class OrderActivity extends ActionBarActivity implements Observer {
     }
 
     public void redeemCertificate(View view) {
-        Intent intent = new Intent(this, CertificateActivity.class);
+        Intent intent = new Intent(this, CertificateActivity_.class);
         startActivity(intent);
     }
 

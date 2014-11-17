@@ -41,7 +41,7 @@
             android:label="@string/title_activity_daily_special" >
         </activity>
         <activity
-            android:name=".CertificateActivity"
+            android:name=".CertificateActivity_"
             android:label="@string/title_activity_certificate" >
         </activity>
         <activity
