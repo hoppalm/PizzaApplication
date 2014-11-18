@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="0"
-            android:id="@+id/rewardPoints" android:layout_alignBottom="@+id/textView3"
+            android:id="@+id/certRewardPoints" android:layout_alignBottom="@+id/textView3"
             android:layout_toRightOf="@+id/redeemButton" android:layout_toEndOf="@+id/redeemButton"/>
 
 </RelativeLayout>

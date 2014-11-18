@@ -29,7 +29,7 @@ public class OrderActivity extends ActionBarActivity implements Observer {
     private OrderObservable orderObservable;
 
     //@ViewById(R.id.orderRewardPoints)
-    protected TextView rewardPointsText;
+    private TextView rewardPointsText;
 
     //@ViewById(R.id.orderRewardPoints)
     private TextView priceText;
@@ -43,12 +43,12 @@ public class OrderActivity extends ActionBarActivity implements Observer {
         orderObservable = OrderObservable.getInstance();
         orderObservable.clearOrder();
 
-        /*if ( MainActivity.currentUser != null) {
+        if ( MainActivity.currentUser != null) {
             orderObservable.setRewardPoints(MainActivity.currentUser.getRewardPoints());
         }
         else{
             orderObservable.setRewardPoints(0);
-        }*/
+        }
     }
 
     @AfterViews
@@ -64,7 +64,7 @@ public class OrderActivity extends ActionBarActivity implements Observer {
 
         removePosition = -1;
 
-        //rewardPointsText.setText(orderObservable.getRewardPoints());
+        rewardPointsText.setText(String.valueOf(orderObservable.getRewardPoints()));
         List<OrderItem> currentItems = new ArrayList<>();
         currentItems.addAll(orderObservable.getOrder().getItems());
         currentItems.addAll(orderObservable.getCouponItems());

@@ -52,8 +52,10 @@
                 android:text="Remove"
                 android:id="@+id/removeButton"
                 android:onClick="removeButton"
-                android:layout_below="@+id/textView2" android:layout_alignRight="@+id/orderItems"
-                android:layout_alignEnd="@+id/orderItems" android:layout_marginTop="28dp"/>
+                android:layout_below="@+id/textView2"
+                android:layout_alignRight="@+id/orderItems"
+                android:layout_alignEnd="@+id/orderItems"
+                android:layout_marginTop="28dp"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -88,15 +90,22 @@
                 android:layout_alignTop="@+id/textView3"
                 android:layout_alignRight="@+id/orderRewardPoints"
                 android:layout_alignEnd="@+id/orderRewardPoints"/>
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                  android:textAppearance="?android:attr/textAppearanceMedium" android:text="Reward Points:"
-                  android:id="@+id/textView"
-                  android:layout_alignTop="@+id/orderRewardPoints" android:layout_alignParentLeft="true"
-                  android:layout_alignParentStart="true"/>
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                  android:textAppearance="?android:attr/textAppearanceMedium" android:text="0"
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Reward Points:"
+                android:id="@+id/textView"
+                android:layout_alignTop="@+id/orderRewardPoints"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textAppearance="?android:attr/textAppearanceMedium"
+                  android:text="0"
                   android:id="@+id/orderRewardPoints"
-                  android:layout_alignTop="@+id/removeButton" android:layout_centerHorizontal="true"/>
+                  android:layout_alignTop="@+id/removeButton"
+                  android:layout_centerHorizontal="true"/>
 
     </RelativeLayout>
 

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import edu.colostate.cs414.d.pizza.Kiosk;
 import edu.colostate.cs414.d.pizza.api.menu.Coupon;
 import org.androidannotations.annotations.*;
@@ -25,6 +26,8 @@ public class CertificateActivity extends ActionBarActivity {
     @ViewById(R.id.certList)
     protected ListView listView;
 
+    private TextView certPointsText;
+
     private List<Coupon> items;
     private Coupon currentCoupon;
 
@@ -39,7 +42,8 @@ public class CertificateActivity extends ActionBarActivity {
         // setCoupons() with the returned items (in the UI thread)
         fetchCoupons();
 
-        //TODO set reward points
+        certPointsText = (TextView) findViewById(R.id.certRewardPoints);
+        certPointsText.setText(String.valueOf(orderObservable.getRewardPoints()));
 
         // could potentially use @ItemSelect here
         // see: https://github.com/excilys/androidannotations/wiki/AdapterViewEvents
@@ -79,8 +83,22 @@ public class CertificateActivity extends ActionBarActivity {
 
     public void redeemCertificate(View view) {
         if (currentCoupon != null){
-            orderObservable.addCoupon(currentCoupon);
-            finish();
+            if(currentCoupon.getRewardPoints() > orderObservable.getRewardPoints()){
+                new AlertDialog.Builder(this)
+                        .setTitle("Not enough reward points")
+                        .setMessage("Not enough reward points to redeem")
+                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+            }
+            else {
+                orderObservable.setRewardPoints(orderObservable.getRewardPoints()-currentCoupon.getRewardPoints());
+                orderObservable.addCoupon(currentCoupon);
+                finish();
+            }
         }
         else {
             new AlertDialog.Builder(this)
@@ -104,7 +122,6 @@ public class CertificateActivity extends ActionBarActivity {
     @UiThread
     public void setCoupons(List<Coupon> items) {
         this.items = items;
-
         ArrayAdapter<Coupon> adapter = new ArrayAdapter<>(this, R.layout.simple_list_item_1 , items);
         listView.setAdapter(adapter);
     }
