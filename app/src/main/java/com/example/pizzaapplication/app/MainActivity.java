@@ -61,7 +61,6 @@ public class MainActivity extends ActionBarActivity {
     public void login(View view) {
         String userNameString = userName.getText().toString();
         String passwordString = password.getText().toString();
-        System.out.println(userName.getText().toString());
         logIn(userNameString,passwordString);
     }
 
@@ -78,7 +77,7 @@ public class MainActivity extends ActionBarActivity {
 
     @Background
     public void logIn(String userName, String password) {
-        System.out.println(userName + " " + password);
+        System.out.println("USER/PASS: " + userName + " " + password);
         try {
             currentUser = kiosk.authenticateUser(userName, password);
             kiosk.loginUser(currentUser);
