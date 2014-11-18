@@ -11,32 +11,65 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+import edu.colostate.cs414.d.pizza.Kiosk;
+import edu.colostate.cs414.d.pizza.api.menu.PizzaMenuItem;
 import edu.colostate.cs414.d.pizza.api.order.OrderItem;
+import org.androidannotations.annotations.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-
+@EActivity(R.layout.activity_order)
 public class OrderActivity extends ActionBarActivity implements Observer {
 
-    public OrderObservable orderObservable;
+    private Kiosk kiosk;
+    private OrderObservable orderObservable;
+
+    //@ViewById(R.id.orderRewardPoints)
+    protected TextView rewardPointsText;
+
+    //@ViewById(R.id.orderRewardPoints)
+    private TextView priceText;
+
     private ArrayAdapter<OrderItem> adapter;
     private ListView listView;
     private int removePosition = -1;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order);
-        orderObservable = orderObservable.getInstance();
-        makeOrderItemTable();
+    public OrderActivity() {
+        kiosk = Kiosk.getInstance();
+        orderObservable = OrderObservable.getInstance();
+        orderObservable.clearOrder();
+
+        /*if ( MainActivity.currentUser != null) {
+            orderObservable.setRewardPoints(MainActivity.currentUser.getRewardPoints());
+        }
+        else{
+            orderObservable.setRewardPoints(0);
+        }*/
+    }
+
+    @AfterViews
+    protected void init() {
+        rewardPointsText = (TextView) findViewById(R.id.orderRewardPoints);
+        priceText =  (TextView) findViewById(R.id.totalDue);
+        updateView();
         orderObservable.addObserver(this);
     }
 
-    public void makeOrderItemTable(){
+    public void updateView(){
+        fetchPrice();
+
         removePosition = -1;
+
+        //rewardPointsText.setText(orderObservable.getRewardPoints());
+        List<OrderItem> currentItems = new ArrayList<>();
+        currentItems.addAll(orderObservable.getOrder().getItems());
+        currentItems.addAll(orderObservable.getCouponItems());
         listView = (ListView) findViewById(R.id.orderItems);
-        adapter= new ArrayAdapter<OrderItem>(this, R.layout.simple_list_item_1 , orderObservable.getOrder().getItems());
+        adapter= new ArrayAdapter<OrderItem>(this, R.layout.simple_list_item_1 , currentItems);
 
         listView.setAdapter(adapter);
 
@@ -55,7 +88,7 @@ public class OrderActivity extends ActionBarActivity implements Observer {
     @Override
     public void update(Observable observable, Object data) {
         System.out.println("DEBUG: It was updated!");
-        makeOrderItemTable();
+        updateView();
     }
 
     @Override
@@ -96,9 +129,10 @@ public class OrderActivity extends ActionBarActivity implements Observer {
     }
 
     public void removeButton(View view) {
-        if(removePosition >= 0)
-            orderObservable.getOrder().getItems().remove(removePosition);
-        makeOrderItemTable();
+        if(removePosition >= 0) {
+            orderObservable.removeItem(removePosition);
+            updateView();
+        }
     }
 
     public void placeOrder(View view) {
@@ -117,5 +151,17 @@ public class OrderActivity extends ActionBarActivity implements Observer {
             Intent intent = new Intent(this, OrderInformationActivity.class);
             startActivity(intent);
         }
+    }
+
+    @Background
+    public void fetchPrice() {
+        double price = kiosk.calculateSubtotal(orderObservable.getOrder(), orderObservable.getDailySpecials());
+        orderObservable.setPrice(price);
+        setPrice();
+    }
+
+    @UiThread
+    public void setPrice() {
+        priceText.setText(String.format("$%.2f", orderObservable.getPrice()));
     }
 }

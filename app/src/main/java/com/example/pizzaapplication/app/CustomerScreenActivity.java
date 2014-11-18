@@ -51,7 +51,7 @@ public class CustomerScreenActivity extends ActionBarActivity {
     }
 
     public void placeOrder(View view) {
-        Intent intent = new Intent(this, OrderActivity.class);
+        Intent intent = new Intent(this, OrderActivity_.class);
         startActivity(intent);
     }
 

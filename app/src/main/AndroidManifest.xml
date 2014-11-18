@@ -25,7 +25,7 @@
             android:label="@string/title_activity_create_account" >
         </activity>
         <activity
-            android:name=".OrderActivity"
+            android:name=".OrderActivity_"
             android:label="@string/title_activity_order" >
         </activity>
         <activity
