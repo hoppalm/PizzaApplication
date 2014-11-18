@@ -13,6 +13,7 @@ import android.widget.EditText;
 import edu.colostate.cs414.d.pizza.Kiosk;
 import edu.colostate.cs414.d.pizza.api.menu.PizzaMenuItem;
 import edu.colostate.cs414.d.pizza.api.user.User;
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.UiThread;
@@ -32,15 +33,11 @@ public class MainActivity extends ActionBarActivity {
         kiosk.initialize("http://10.0.2.2:8080/");
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    @AfterViews
+    protected void init() {
         userName = (EditText)findViewById(R.id.userName);
         password = (EditText)findViewById(R.id.password);
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -83,7 +80,7 @@ public class MainActivity extends ActionBarActivity {
     public void logIn(String userName, String password) {
         System.out.println(userName + " " + password);
         try {
-            currentUser = kiosk.authenticateUser("m", "m");
+            currentUser = kiosk.authenticateUser(userName, password);
             kiosk.loginUser(currentUser);
             System.out.println(currentUser.getRewardPoints() + " " + currentUser.getUserName() + " " + currentUser.getPassword());
             startCustomerActivity();

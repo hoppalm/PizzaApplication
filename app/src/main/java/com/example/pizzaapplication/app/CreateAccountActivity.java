@@ -1,17 +1,25 @@
 package com.example.pizzaapplication.app;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import edu.colostate.cs414.d.pizza.Kiosk;
+import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.UiThread;
 
-
+//@EActivity(R.layout.activity_create_account)
 public class CreateAccountActivity extends ActionBarActivity {
 
     private EditText userName;
     private EditText password;
+    private Kiosk kiosk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +51,8 @@ public class CreateAccountActivity extends ActionBarActivity {
 
     public void save(View view){
         //TO DO CREATE ACCOUNT IF YOU CAN
-        //String userNameString = userName.getText().toString();
-        //String passwordString = password.getText().toString();
+        String userNameString = userName.getText().toString();
+        String passwordString = password.getText().toString();
         //authenticate error if it already exists
         finish();
     }
@@ -52,4 +60,39 @@ public class CreateAccountActivity extends ActionBarActivity {
     public void cancel(View view){
         finish();
     }
+/*
+    @Background
+    public void createAccount(String userName, String password) {
+        try {
+            kiosk.registerUser(userName, password);
+            finishCreateAccount();
+        }
+        catch (edu.colostate.cs414.d.pizza.client.WebServiceException We){
+            startAlertDialog();
+        }
+    }
+
+    @UiThread
+    public void finishCreateAccount() {
+        finish();
+    }
+
+    @UiThread
+    public void startAlertDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Credentials already exist")
+                .setMessage("Retry?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
+*/
 }
