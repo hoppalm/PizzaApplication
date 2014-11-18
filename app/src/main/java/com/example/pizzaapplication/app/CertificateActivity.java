@@ -1,21 +1,19 @@
 package com.example.pizzaapplication.app;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import com.example.pizzaapplication.test.OrderObservable;
 import edu.colostate.cs414.d.pizza.Kiosk;
 import edu.colostate.cs414.d.pizza.api.menu.Coupon;
-import edu.colostate.cs414.d.pizza.api.menu.PizzaMenuItem;
 import org.androidannotations.annotations.*;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 @EActivity(R.layout.activity_certificate)
@@ -80,11 +78,21 @@ public class CertificateActivity extends ActionBarActivity {
     }
 
     public void redeemCertificate(View view) {
-        //TODO null handling
         if (currentCoupon != null){
             orderObservable.addCoupon(currentCoupon);
+            finish();
         }
-        finish();
+        else {
+            new AlertDialog.Builder(this)
+                    .setTitle("Certificate Not Selected")
+                    .setMessage("Must select an certificate to add")
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
     }
 
     @Background

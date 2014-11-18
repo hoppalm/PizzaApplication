@@ -1,5 +1,7 @@
 package com.example.pizzaapplication.app;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -9,7 +11,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import com.example.pizzaapplication.test.OrderObservable;
 import edu.colostate.cs414.d.pizza.api.order.OrderItem;
 
 import java.util.Observable;
@@ -101,7 +102,20 @@ public class OrderActivity extends ActionBarActivity implements Observer {
     }
 
     public void placeOrder(View view) {
-        Intent intent = new Intent(this, OrderInformationActivity.class);
-        startActivity(intent);
+        if(orderObservable.getOrder().getItems().size() == 0){
+            new AlertDialog.Builder(this)
+                    .setTitle("Order Is Empty")
+                    .setMessage("Must order at least one item")
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
+        else {
+            Intent intent = new Intent(this, OrderInformationActivity.class);
+            startActivity(intent);
+        }
     }
 }

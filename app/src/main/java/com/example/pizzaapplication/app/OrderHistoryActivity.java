@@ -2,19 +2,14 @@ package com.example.pizzaapplication.app;
 
 import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.*;
-import com.example.pizzaapplication.test.OrderObservable;
 import edu.colostate.cs414.d.pizza.Kiosk;
-import edu.colostate.cs414.d.pizza.api.menu.PizzaMenuItem;
 import edu.colostate.cs414.d.pizza.api.order.Order;
 import edu.colostate.cs414.d.pizza.api.order.OrderItem;
 import org.androidannotations.annotations.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -60,14 +55,14 @@ public class OrderHistoryActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public TableRow getTableRow(OrderItem orderItem){
+    public TableRow getTableRow(OrderItem orderItem, int orderID){
         TableRow tr = new TableRow(this);
         tr.setLayoutParams(new TableRow.LayoutParams(
                 TableRow.LayoutParams.FILL_PARENT,
                 TableRow.LayoutParams.WRAP_CONTENT));
         //add orderID
         TextView labelOrderID = new TextView(this);
-        labelOrderID.setText(String.valueOf(orderItem.getId()));
+        labelOrderID.setText(String.valueOf(orderID));
         labelOrderID.setTextColor(Color.BLACK);
         labelOrderID.setLayoutParams(new TableRow.LayoutParams(
                 TableRow.LayoutParams.FILL_PARENT,
@@ -105,7 +100,7 @@ public class OrderHistoryActivity extends ActionBarActivity {
     public void setTable(List<Order> table) {
         for(Order order : table){
             for(OrderItem orderItem : order.getItems()){
-                tableLayout.addView(getTableRow(orderItem), new TableLayout.LayoutParams(
+                tableLayout.addView(getTableRow(orderItem, order.getId()), new TableLayout.LayoutParams(
                         TableRow.LayoutParams.FILL_PARENT,
                         TableRow.LayoutParams.WRAP_CONTENT));
             }

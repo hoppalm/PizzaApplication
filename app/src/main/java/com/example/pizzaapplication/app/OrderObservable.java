@@ -1,4 +1,4 @@
-package com.example.pizzaapplication.test;
+package com.example.pizzaapplication.app;
 
 import edu.colostate.cs414.d.pizza.api.menu.Coupon;
 import edu.colostate.cs414.d.pizza.api.menu.DailySpecial;
@@ -16,6 +16,7 @@ public class OrderObservable extends Observable {
     private Order order;
     private List<DailySpecial> dailySpecials;
     private List<Coupon> coupons;
+    private double price;
 
     private OrderObservable() {
         order = new Order();
@@ -48,8 +49,6 @@ public class OrderObservable extends Observable {
         addOrderItem(new OrderItem(coupon.getMenuItem(), 1));
     }
 
-
-
     private void triggerObservers() {
         setChanged();
         notifyObservers();
@@ -77,5 +76,13 @@ public class OrderObservable extends Observable {
 
     public void setCoupons(List<Coupon> coupons) {
         this.coupons = coupons;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }
