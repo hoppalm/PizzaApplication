@@ -92,7 +92,7 @@ public class MainActivity extends ActionBarActivity {
 
     @UiThread
     public void startCustomerActivity() {
-        Intent intent = new Intent(this, CustomerScreenActivity.class);
+        Intent intent = new Intent(this, CustomerScreenActivity_.class);
         startActivity(intent);
     }
 

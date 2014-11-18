@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CustomerScreenActivity"
+            android:name=".CustomerScreenActivity_"
             android:label="@string/title_activity_customer_screen" >
         </activity>
         <activity

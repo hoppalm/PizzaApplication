@@ -6,16 +6,31 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.*;
+import edu.colostate.cs414.d.pizza.Kiosk;
+import edu.colostate.cs414.d.pizza.api.menu.PizzaMenuItem;
+import org.androidannotations.annotations.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
+@EActivity(R.layout.activity_customer_screen)
 public class CustomerScreenActivity extends ActionBarActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_screen);
+    @ViewById(R.id.rewardPoints)
+    protected TextView textView;
+
+    private Kiosk kiosk;
+
+
+    public CustomerScreenActivity() {
+        kiosk = Kiosk.getInstance();
+    }
+
+    @AfterViews
+    protected void init() {
+        textView = (TextView) findViewById(R.id.rewardPoints);
         if (MainActivity.currentUser == null) {
             Button orderHistoryButton = (Button) findViewById(R.id.orderHistoryButton);
             orderHistoryButton.setEnabled(false);
@@ -23,13 +38,10 @@ public class CustomerScreenActivity extends ActionBarActivity {
             Button logoutButton = (Button) findViewById(R.id.logOutButton);
             logoutButton.setEnabled(false);
         }
-        else {
-            TextView text = (TextView) findViewById(R.id.rewardPoints);
-            text.setText(String.valueOf(MainActivity.currentUser.getRewardPoints()));
+        else{
+            fetchCustomer();
         }
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -63,5 +75,16 @@ public class CustomerScreenActivity extends ActionBarActivity {
     public void logout(View view) {
         MainActivity.currentUser = null;
         finish();
+    }
+
+    @Background
+    public void fetchCustomer() {
+        MainActivity.currentUser = kiosk.getLoggedInUser();
+        setRewardPoints();
+    }
+
+    @UiThread
+    public void setRewardPoints() {
+        textView.setText(String.valueOf(MainActivity.currentUser.getRewardPoints()));
     }
 }
