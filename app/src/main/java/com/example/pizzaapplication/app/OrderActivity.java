@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import com.example.pizzaapplication.test.OrderObservable;
 import edu.colostate.cs414.d.pizza.api.order.OrderItem;
 
 import java.util.Observable;

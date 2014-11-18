@@ -1,7 +1,8 @@
 package com.example.pizzaapplication.app;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import com.example.pizzaapplication.test.OrderObservable;
 import edu.colostate.cs414.d.pizza.Kiosk;
 import edu.colostate.cs414.d.pizza.api.menu.PizzaMenuItem;
 import edu.colostate.cs414.d.pizza.api.order.OrderItem;
@@ -118,10 +118,21 @@ public class MenuActivity extends ActionBarActivity {
     }
 
     public void addItem(View view) {
-        //TODO nothing selected
-        if(currentMenuItem != null)
-            orderObservable.addOrderItem(new OrderItem(currentMenuItem,quantity));
-        finish();
+        if(currentMenuItem != null) {
+            orderObservable.addOrderItem(new OrderItem(currentMenuItem, quantity));
+            finish();
+        }
+        else {
+            new AlertDialog.Builder(this)
+                    .setTitle("Item Not Selected")
+                    .setMessage("Must select an item to add")
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
     }
 
     @Background

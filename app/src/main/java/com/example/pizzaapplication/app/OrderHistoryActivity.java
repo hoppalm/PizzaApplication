@@ -2,19 +2,14 @@ package com.example.pizzaapplication.app;
 
 import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.*;
-import com.example.pizzaapplication.test.OrderObservable;
 import edu.colostate.cs414.d.pizza.Kiosk;
-import edu.colostate.cs414.d.pizza.api.menu.PizzaMenuItem;
 import edu.colostate.cs414.d.pizza.api.order.Order;
 import edu.colostate.cs414.d.pizza.api.order.OrderItem;
 import org.androidannotations.annotations.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
