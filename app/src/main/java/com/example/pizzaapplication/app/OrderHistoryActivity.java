@@ -60,14 +60,14 @@ public class OrderHistoryActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public TableRow getTableRow(OrderItem orderItem){
+    public TableRow getTableRow(OrderItem orderItem, int orderID){
         TableRow tr = new TableRow(this);
         tr.setLayoutParams(new TableRow.LayoutParams(
                 TableRow.LayoutParams.FILL_PARENT,
                 TableRow.LayoutParams.WRAP_CONTENT));
         //add orderID
         TextView labelOrderID = new TextView(this);
-        labelOrderID.setText(String.valueOf(orderItem.getId()));
+        labelOrderID.setText(String.valueOf(orderID));
         labelOrderID.setTextColor(Color.BLACK);
         labelOrderID.setLayoutParams(new TableRow.LayoutParams(
                 TableRow.LayoutParams.FILL_PARENT,
@@ -105,7 +105,7 @@ public class OrderHistoryActivity extends ActionBarActivity {
     public void setTable(List<Order> table) {
         for(Order order : table){
             for(OrderItem orderItem : order.getItems()){
-                tableLayout.addView(getTableRow(orderItem), new TableLayout.LayoutParams(
+                tableLayout.addView(getTableRow(orderItem, order.getId()), new TableLayout.LayoutParams(
                         TableRow.LayoutParams.FILL_PARENT,
                         TableRow.LayoutParams.WRAP_CONTENT));
             }
