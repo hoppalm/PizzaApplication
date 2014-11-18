@@ -10,23 +10,26 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import edu.colostate.cs414.d.pizza.Kiosk;
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.UiThread;
 
-//@EActivity(R.layout.activity_create_account)
+@EActivity(R.layout.activity_create_account)
 public class CreateAccountActivity extends ActionBarActivity {
 
     private EditText userName;
     private EditText password;
     private Kiosk kiosk;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_account);
-        userName = (EditText)findViewById(R.id.userName);
-        password = (EditText)findViewById(R.id.password);
+    public CreateAccountActivity() {
+        kiosk = kiosk.getInstance();
+    }
+
+    @AfterViews
+    protected void init() {
+        userName = (EditText)findViewById(R.id.createUserName);
+        password = (EditText)findViewById(R.id.createPassword);
     }
 
 
@@ -50,17 +53,15 @@ public class CreateAccountActivity extends ActionBarActivity {
     }
 
     public void save(View view){
-        //TO DO CREATE ACCOUNT IF YOU CAN
         String userNameString = userName.getText().toString();
         String passwordString = password.getText().toString();
-        //authenticate error if it already exists
-        finish();
+        createAccount(userNameString, passwordString);
     }
 
     public void cancel(View view){
         finish();
     }
-/*
+
     @Background
     public void createAccount(String userName, String password) {
         try {
@@ -94,5 +95,5 @@ public class CreateAccountActivity extends ActionBarActivity {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
     }
-*/
+
 }

@@ -65,13 +65,13 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void nonUser(View view) {
+        currentUser = null;
         Intent intent = new Intent(this, CustomerScreenActivity.class);
-        //set customer to null
         startActivity(intent);
     }
 
     public void createAccount(View view) {
-        Intent intent = new Intent(this, CreateAccountActivity.class);
+        Intent intent = new Intent(this, CreateAccountActivity_.class);
         startActivity(intent);
     }
 
