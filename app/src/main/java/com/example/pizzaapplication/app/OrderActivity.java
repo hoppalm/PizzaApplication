@@ -85,12 +85,12 @@ public class OrderActivity extends ActionBarActivity implements Observer {
     }
 
     public void addDailySpecial(View view) {
-        Intent intent = new Intent(this, DailySpecialActivity.class);
+        Intent intent = new Intent(this, DailySpecialActivity_.class);
         startActivity(intent);
     }
 
     public void redeemCertificate(View view) {
-        Intent intent = new Intent(this, CertificateActivity.class);
+        Intent intent = new Intent(this, CertificateActivity_.class);
         startActivity(intent);
     }
 

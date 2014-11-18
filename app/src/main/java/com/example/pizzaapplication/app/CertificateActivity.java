@@ -9,64 +9,52 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.example.pizzaapplication.test.OrderObservable;
+import edu.colostate.cs414.d.pizza.Kiosk;
 import edu.colostate.cs414.d.pizza.api.menu.Coupon;
 import edu.colostate.cs414.d.pizza.api.menu.PizzaMenuItem;
+import org.androidannotations.annotations.*;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+@EActivity(R.layout.activity_certificate)
 public class CertificateActivity extends ActionBarActivity {
 
-    private List<Coupon> items;
-
+    private Kiosk kiosk;
     private OrderObservable orderObservable;
 
+    @ViewById(R.id.certList)
+    protected ListView listView;
+
+    private List<Coupon> items;
     private Coupon currentCoupon;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_certificate);
+    public CertificateActivity() {
+        kiosk = Kiosk.getInstance();
+        orderObservable = OrderObservable.getInstance();
+    }
 
-        orderObservable = orderObservable.getInstance();
+    @AfterViews
+    protected void init() {
+        // fetchCoupons will request the menu in the background, and then call
+        // setCoupons() with the returned items (in the UI thread)
+        fetchCoupons();
 
         //TODO set reward points
-        ListView listView = (ListView) findViewById(R.id.certList);
 
-        //TODO add in real coupons
-
-        List<PizzaMenuItem> menuitems = new ArrayList<>();
-        menuitems.add(new PizzaMenuItem("pizza",10,""));
-        menuitems.add(new PizzaMenuItem("meat pizza",8,"meat everyone"));
-        menuitems.add(new PizzaMenuItem("soda",3,""));
-        menuitems.add(new PizzaMenuItem("coke",2,"Whats the difference?"));
-        menuitems.add(new PizzaMenuItem("cheese pizza",11,"cheesy"));
-
-        items = new ArrayList<>();
-        items.add(new Coupon(menuitems.get(3),3));
-        items.add(new Coupon(menuitems.get(4),2));
-        items.add(new Coupon(menuitems.get(1),7));
-        items.add(new Coupon(menuitems.get(2),4));
-        items.add(new Coupon(menuitems.get(0),1));
-
-
-        ArrayAdapter<Coupon> adapter= new ArrayAdapter<Coupon>(this, R.layout.simple_list_item_1 , items);
-
-        listView.setAdapter(adapter);
-
+        // could potentially use @ItemSelect here
+        // see: https://github.com/excilys/androidannotations/wiki/AdapterViewEvents
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,long arg3) {
                 view.setSelected(true);
                 currentCoupon = items.get(position);
+                System.out.println(currentCoupon);
             }
         });
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -98,4 +86,19 @@ public class CertificateActivity extends ActionBarActivity {
         }
         finish();
     }
+
+    @Background
+    public void fetchCoupons() {
+        List<Coupon> items = kiosk.viewCoupons();
+        setCoupons(items);
+    }
+
+    @UiThread
+    public void setCoupons(List<Coupon> items) {
+        this.items = items;
+
+        ArrayAdapter<Coupon> adapter = new ArrayAdapter<>(this, R.layout.simple_list_item_1 , items);
+        listView.setAdapter(adapter);
+    }
+
 }

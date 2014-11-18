@@ -36,13 +36,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="UserName"
             android:ems="10"
             android:id="@+id/createUserName"
             android:layout_above="@+id/createPassword" android:layout_centerHorizontal="true"
-            android:layout_marginBottom="64dp"/>
+            android:layout_marginBottom="64dp" android:hint="User Name"/>
     <EditText android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:inputType="textPersonName" android:text="Password" android:ems="10" android:id="@+id/createPassword"
-              android:layout_centerVertical="true" android:layout_alignLeft="@+id/createUserName"/>
+              android:ems="10" android:id="@+id/createPassword"
+              android:layout_centerVertical="true" android:layout_alignLeft="@+id/createUserName"
+              android:hint="Password" android:inputType="textPassword"/>
 
 </RelativeLayout>
