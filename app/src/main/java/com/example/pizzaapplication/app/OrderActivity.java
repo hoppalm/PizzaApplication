@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import com.example.pizzaapplication.test.OrderItem;
 import com.example.pizzaapplication.test.OrderObservable;
+import edu.colostate.cs414.d.pizza.api.order.OrderItem;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -77,17 +77,20 @@ public class OrderActivity extends ActionBarActivity implements Observer {
     }
 
     public void addMenuItem(View view) {
-        Intent intent = new Intent(this, MenuActivity.class);
+        // `MenuActivity_` instead of `MenuActivity`
+        // AndroidAnnotations generates the `_` for us, but we have to call it
+        // instead of the "real" class manually
+        Intent intent = new Intent(this, MenuActivity_.class);
         startActivity(intent);
     }
 
     public void addDailySpecial(View view) {
-        Intent intent = new Intent(this, DailySpecialActivity.class);
+        Intent intent = new Intent(this, DailySpecialActivity_.class);
         startActivity(intent);
     }
 
     public void redeemCertificate(View view) {
-        Intent intent = new Intent(this, CertificateActivity.class);
+        Intent intent = new Intent(this, CertificateActivity_.class);
         startActivity(intent);
     }
 

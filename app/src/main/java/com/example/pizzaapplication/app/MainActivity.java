@@ -7,12 +7,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import edu.colostate.cs414.d.pizza.Kiosk;
 
 
 public class MainActivity extends ActionBarActivity {
 
     private EditText userName;
     private EditText password;
+    private Kiosk kiosk;
+
+    public MainActivity() {
+        kiosk = kiosk.getInstance();
+        kiosk.initialize("http://10.0.2.2:8080/");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

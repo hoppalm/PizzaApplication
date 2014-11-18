@@ -9,71 +9,50 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import android.widget.ListView;
-import com.example.pizzaapplication.test.DailySpecial;
 import com.example.pizzaapplication.test.OrderObservable;
-import com.example.pizzaapplication.test.PizzaMenuItem;
+import edu.colostate.cs414.d.pizza.Kiosk;
+import edu.colostate.cs414.d.pizza.api.menu.DailySpecial;
+import org.androidannotations.annotations.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
-
+@EActivity(R.layout.activity_daily_special)
 public class DailySpecialActivity extends ActionBarActivity {
 
-    private List<DailySpecial> dailySpecialList;
+    private Kiosk kiosk;
 
     private OrderObservable orderObservable;
 
+    private List<DailySpecial> dailySpecialList;
+
     private DailySpecial currentDailySpecial;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_daily_special);
+    @ViewById(R.id.specialList)
+    protected ListView listView;
 
-        ListView listView = (ListView) findViewById(R.id.specialList);
+    public DailySpecialActivity() {
+        kiosk = Kiosk.getInstance();
+        orderObservable = OrderObservable.getInstance();
+    }
 
-        orderObservable = orderObservable.getInstance();
+    @AfterViews
+    protected void init() {
+        // fetchSpecials will request the menu in the background, and then call
+        // setSpecials() with the returned items (in the UI thread)
+        fetchSpecials();
 
-        //TODO add in real specials
-
-        List<PizzaMenuItem> menuitems = new ArrayList<>();
-        menuitems.add(new PizzaMenuItem("","pizza",10));
-        menuitems.add(new PizzaMenuItem("meat everyone","meat pizza",8));
-        menuitems.add(new PizzaMenuItem("","soda",3));
-        menuitems.add(new PizzaMenuItem("Whats the difference?","coke",2));
-        menuitems.add(new PizzaMenuItem("cheesy","cheese pizza",11));
-
-        dailySpecialList = new ArrayList<>();
-        dailySpecialList.add(new DailySpecial(10, menuitems));
-
-        menuitems = new ArrayList<>();
-        menuitems.add(new PizzaMenuItem("","pizza",10));
-        menuitems.add(new PizzaMenuItem("cheesy","cheese pizza",11));
-
-        dailySpecialList.add(new DailySpecial(7, menuitems));
-
-        menuitems = new ArrayList<>();
-        menuitems.add(new PizzaMenuItem("meat everyone","meat pizza",8));
-        menuitems.add(new PizzaMenuItem("","soda",3));
-        menuitems.add(new PizzaMenuItem("cheesy","cheese pizza",11));
-
-        dailySpecialList.add(new DailySpecial(5, menuitems));
-
-
-        ArrayAdapter<DailySpecial> adapter= new ArrayAdapter<DailySpecial>(this, R.layout.simple_list_item_1 , dailySpecialList);
-
-        listView.setAdapter(adapter);
-
+        // could potentially use @ItemSelect here
+        // see: https://github.com/excilys/androidannotations/wiki/AdapterViewEvents
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,long arg3) {
                 view.setSelected(true);
                 currentDailySpecial = dailySpecialList.get(position);
+                System.out.println(currentDailySpecial);
             }
         });
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -104,5 +83,19 @@ public class DailySpecialActivity extends ActionBarActivity {
 
     public void cancel(View view) {
         finish();
+    }
+
+    @Background
+    public void fetchSpecials() {
+        List<DailySpecial> items = kiosk.viewDailySpecials();
+        setSpecials(items);
+    }
+
+    @UiThread
+    public void setSpecials(List<DailySpecial> items) {
+        this.dailySpecialList = items;
+
+        ArrayAdapter<DailySpecial> adapter = new ArrayAdapter<>(this, R.layout.simple_list_item_1 , items);
+        listView.setAdapter(adapter);
     }
 }

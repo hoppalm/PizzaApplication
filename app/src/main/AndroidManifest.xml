@@ -33,15 +33,15 @@
             android:label="@string/title_activity_order_history" >
         </activity>
         <activity
-            android:name=".MenuActivity"
+            android:name=".MenuActivity_"
             android:label="@string/title_activity_menu" >
         </activity>
         <activity
-            android:name=".DailySpecialActivity"
+            android:name=".DailySpecialActivity_"
             android:label="@string/title_activity_daily_special" >
         </activity>
         <activity
-            android:name=".CertificateActivity"
+            android:name=".CertificateActivity_"
             android:label="@string/title_activity_certificate" >
         </activity>
         <activity
@@ -61,5 +61,5 @@
             android:label="@string/title_activity_check_payment" >
         </activity>
     </application>
-
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
