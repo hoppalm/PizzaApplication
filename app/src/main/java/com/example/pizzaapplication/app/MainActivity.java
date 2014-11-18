@@ -1,17 +1,28 @@
 package com.example.pizzaapplication.app;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import edu.colostate.cs414.d.pizza.Kiosk;
+import edu.colostate.cs414.d.pizza.api.menu.PizzaMenuItem;
+import edu.colostate.cs414.d.pizza.api.user.User;
+import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.UiThread;
 
+import java.util.List;
 
+@EActivity(R.layout.activity_main)
 public class MainActivity extends ActionBarActivity {
 
+    public static User currentUser = null;
     private EditText userName;
     private EditText password;
     private Kiosk kiosk;
@@ -51,13 +62,10 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void login(View view) {
-        //TO DO AUTHENTICATE
-        Intent intent = new Intent(this, CustomerScreenActivity.class);
-        //set customer in a state class or kiosk to logged in
         String userNameString = userName.getText().toString();
         String passwordString = password.getText().toString();
-        startActivity(intent);
-
+        System.out.println(userName.getText().toString());
+        logIn(userNameString,passwordString);
     }
 
     public void nonUser(View view) {
@@ -69,5 +77,44 @@ public class MainActivity extends ActionBarActivity {
     public void createAccount(View view) {
         Intent intent = new Intent(this, CreateAccountActivity.class);
         startActivity(intent);
+    }
+
+    @Background
+    public void logIn(String userName, String password) {
+        System.out.println(userName + " " + password);
+        try {
+            currentUser = kiosk.authenticateUser("m", "m");
+            kiosk.loginUser(currentUser);
+            System.out.println(currentUser.getRewardPoints() + " " + currentUser.getUserName() + " " + currentUser.getPassword());
+            startCustomerActivity();
+        }
+        catch (edu.colostate.cs414.d.pizza.client.WebServiceException We){
+            currentUser = null;
+            startAlertDialog();
+        }
+    }
+
+    @UiThread
+    public void startCustomerActivity() {
+        Intent intent = new Intent(this, CustomerScreenActivity.class);
+        startActivity(intent);
+    }
+
+    @UiThread
+    public void startAlertDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Invalid credentials")
+                .setMessage("Continue as a non user?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        startCustomerActivity();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 }

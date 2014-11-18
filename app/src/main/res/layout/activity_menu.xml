@@ -34,8 +34,6 @@
             android:layout_alignParentBottom="true" android:layout_alignRight="@+id/menuList"
             android:layout_alignEnd="@+id/menuList"
             android:onClick="cancel"/>
-
-
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

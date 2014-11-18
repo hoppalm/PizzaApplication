@@ -16,18 +16,18 @@ public class CustomerScreenActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_screen);
-        //if customer is null set order history button/log out to inactive
-        /*if (kiosk.getLoggedInUser() == NULL) {
-        Button orderHistoryButton = (Button) findViewById(R.id.orderHistoryButton);
-        orderHistoryButton.setEnabled(false);
+        if (MainActivity.currentUser == null) {
+            Button orderHistoryButton = (Button) findViewById(R.id.orderHistoryButton);
+            orderHistoryButton.setEnabled(false);
 
-        Button logoutButton = (Button) findViewById(R.id.logOutButton);
-        logoutButton.setEnabled(false);
-
-        TextView text = (TextView) findViewById(R.id.rewardPoints);
-        text.setText(String.getValue(customer.getRewardsPoint());
+            Button logoutButton = (Button) findViewById(R.id.logOutButton);
+            logoutButton.setEnabled(false);
         }
-        */
+        else {
+            TextView text = (TextView) findViewById(R.id.rewardPoints);
+            text.setText(String.valueOf(MainActivity.currentUser.getRewardPoints()));
+        }
+
     }
 
 
@@ -56,14 +56,12 @@ public class CustomerScreenActivity extends ActionBarActivity {
     }
 
     public void orderHistory(View view) {
-        Intent intent = new Intent(this, OrderHistoryActivity.class);
+        Intent intent = new Intent(this, OrderHistoryActivity_.class);
         startActivity(intent);
     }
 
     public void logout(View view) {
-        //TO DO LOG OUT OF ACCOUNT
-        //set customer to null
-        //customer = null;
+        MainActivity.currentUser = null;
         finish();
     }
 }
