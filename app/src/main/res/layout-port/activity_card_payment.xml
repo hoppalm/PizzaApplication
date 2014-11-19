@@ -36,7 +36,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="textPersonName"
                             android:ems="10"
-                            android:id="@+id/editText" android:layout_column="1" android:hint="Card Holder Name"/>
+                            android:id="@+id/cardHolder" android:layout_column="1" android:hint="Card Holder Name"/>
                 </TableRow>
                 <TableRow
                         android:layout_width="fill_parent"
@@ -52,7 +52,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="number"
                             android:ems="10"
-                            android:id="@+id/editText4" android:layout_column="1" android:hint="Card Number"/>
+                            android:id="@+id/cardNumber" android:layout_column="1" android:hint="Card Number"/>
                 </TableRow>
                 <TableRow
                         android:layout_width="fill_parent"
@@ -68,7 +68,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="number"
                             android:ems="10"
-                            android:id="@+id/editText5" android:hint="Security Code"/>
+                            android:id="@+id/securityCode" android:hint="Security Code"/>
                 </TableRow>
                 <TableRow
                         android:layout_width="fill_parent"
@@ -84,7 +84,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="date"
                             android:ems="10"
-                            android:id="@+id/editText6" android:hint="Expiration Date"/>
+                            android:id="@+id/expirationDate" android:hint="Expiration Date"/>
                 </TableRow>
                 <TableRow
                         android:layout_width="fill_parent"
@@ -100,7 +100,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="textPostalAddress"
                             android:ems="10"
-                            android:id="@+id/editText7" android:hint="Billing Address"/>
+                            android:id="@+id/billingAddress" android:hint="Billing Address"/>
                 </TableRow>
                 <TableRow
                         android:layout_width="fill_parent"
@@ -114,7 +114,7 @@
                     <EditText
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/editText8" android:hint="City"/>
+                            android:id="@+id/city" android:hint="City"/>
                 </TableRow>
                 <TableRow
                         android:layout_width="fill_parent"
@@ -130,7 +130,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="number"
                             android:ems="10"
-                            android:id="@+id/editText9" android:hint="Zip Code"/>
+                            android:id="@+id/zipCode" android:hint="Zip Code"/>
                 </TableRow>
                 <TableRow
                         android:layout_width="fill_parent"
