@@ -21,6 +21,9 @@ public class OrderHistoryActivity extends ActionBarActivity {
     @ViewById(R.id.menuList)
     protected TableLayout tableLayout;
 
+    @ViewById(R.id.rewardPoints)
+    protected TextView textView;
+
     private List<Order> items;
 
     public OrderHistoryActivity() {
@@ -34,6 +37,8 @@ public class OrderHistoryActivity extends ActionBarActivity {
         fetchOrders();
 
         tableLayout = (TableLayout) findViewById(R.id.orderHistoryTable);
+
+        textView = (TextView) findViewById(R.id.rewardPoints);
     }
 
     @Override
@@ -93,11 +98,14 @@ public class OrderHistoryActivity extends ActionBarActivity {
     @Background
     public void fetchOrders() {
         List<Order> orders = kiosk.getUserOrders();
-        setTable(orders);
+        int rewardPoints = kiosk.getLoggedInUser().getRewardPoints();
+        setTable(orders, rewardPoints);
+
     }
 
     @UiThread
-    public void setTable(List<Order> table) {
+    public void setTable(List<Order> table, int rewardPoints) {
+        textView.setText(String.valueOf(rewardPoints));
         for(Order order : table){
             for(OrderItem orderItem : order.getItems()){
                 tableLayout.addView(getTableRow(orderItem, order.getId()), new TableLayout.LayoutParams(

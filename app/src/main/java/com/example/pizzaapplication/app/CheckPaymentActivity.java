@@ -67,6 +67,7 @@ public class CheckPaymentActivity extends Activity {
         if (MainActivity.currentUser != null){
             MainActivity.currentUser.setRewardPoints(orderObservable.getRewardPoints()+1);
             kiosk.getLoggedInUser().setRewardPoints(orderObservable.getRewardPoints()+1);
+            kiosk.updateRewardPoints(orderObservable.getRewardPoints()+1);
         }
         kiosk.placeOrder(orderObservable.getOrder());
         startCustomerActivity();
