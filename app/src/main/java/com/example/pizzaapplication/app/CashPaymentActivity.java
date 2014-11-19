@@ -1,20 +1,36 @@
 package com.example.pizzaapplication.app;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import edu.colostate.cs414.d.pizza.Kiosk;
+import edu.colostate.cs414.d.pizza.api.order.OrderStatus;
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.UiThread;
 
-
+@EActivity(R.layout.activity_cash_payment)
 public class CashPaymentActivity extends Activity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cash_payment);
+    private Kiosk kiosk;
+    private OrderObservable orderObservable;
+    private TextView price;
+
+    public CashPaymentActivity() {
+        kiosk = Kiosk.getInstance();
+        orderObservable = OrderObservable.getInstance();
     }
 
+    @AfterViews
+    protected void init() {
+        price =  (TextView) findViewById(R.id.textView2);
+        price.setText(String.format("$%.2f", orderObservable.getPrice()));
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -37,5 +53,25 @@ public class CashPaymentActivity extends Activity {
 
     public void submitPayment(View view) {
         //TODO ERROR CHECKING OF FIELDS HERE
+        placeOrder();
+    }
+
+    @Background
+    public void placeOrder() {
+        orderObservable.getOrder().setStatus(OrderStatus.PENDING);
+        orderObservable.getOrder().getItems().addAll(orderObservable.getCouponItems());
+        if (MainActivity.currentUser != null){
+            MainActivity.currentUser.setRewardPoints(orderObservable.getRewardPoints()+1);
+            kiosk.getLoggedInUser().setRewardPoints(orderObservable.getRewardPoints()+1);
+        }
+        kiosk.placeOrder(orderObservable.getOrder());
+        startCustomerActivity();
+    }
+
+    @UiThread
+    public void startCustomerActivity() {
+        Intent intent = new Intent(this, CustomerScreenActivity_.class);
+        startActivity(intent);
+        finish();
     }
 }

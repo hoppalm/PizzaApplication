@@ -15,6 +15,7 @@ import android.widget.TextView;
 import edu.colostate.cs414.d.pizza.Kiosk;
 import edu.colostate.cs414.d.pizza.api.menu.PizzaMenuItem;
 import edu.colostate.cs414.d.pizza.api.order.OrderItem;
+import edu.colostate.cs414.d.pizza.utilities.Utility;
 import org.androidannotations.annotations.*;
 
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ public class OrderActivity extends ActionBarActivity implements Observer {
 
         if ( MainActivity.currentUser != null) {
             orderObservable.setRewardPoints(MainActivity.currentUser.getRewardPoints());
+            orderObservable.getOrder().setUserName(MainActivity.currentUser.getUserName());
         }
         else{
             orderObservable.setRewardPoints(0);
@@ -136,7 +138,7 @@ public class OrderActivity extends ActionBarActivity implements Observer {
     }
 
     public void placeOrder(View view) {
-        if(orderObservable.getOrder().getItems().size() == 0){
+        if(orderObservable.getOrder().getItems().size() == 0 && orderObservable.getCouponItems().size() == 0){
             new AlertDialog.Builder(this)
                     .setTitle("Order Is Empty")
                     .setMessage("Must order at least one item")
@@ -156,6 +158,7 @@ public class OrderActivity extends ActionBarActivity implements Observer {
     @Background
     public void fetchPrice() {
         double price = kiosk.calculateSubtotal(orderObservable.getOrder(), orderObservable.getDailySpecials());
+        price = Utility.calculateTotalWithTax(price);
         orderObservable.setPrice(price);
         setPrice();
     }
