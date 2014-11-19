@@ -66,7 +66,7 @@ public class MainActivity extends ActionBarActivity {
 
     public void nonUser(View view) {
         currentUser = null;
-        Intent intent = new Intent(this, CustomerScreenActivity.class);
+        Intent intent = new Intent(this, CustomerScreenActivity_.class);
         startActivity(intent);
     }
 
