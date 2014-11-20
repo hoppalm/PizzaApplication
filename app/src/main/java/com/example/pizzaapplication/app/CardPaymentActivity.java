@@ -172,8 +172,8 @@ public class CardPaymentActivity extends Activity {
     @UiThread
     public void startCustomerActivity() {
         Intent intent = new Intent(this, CustomerScreenActivity_.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
-        finish();
     }
 
     public void printError(String errorName, String error){

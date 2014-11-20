@@ -77,6 +77,15 @@ public class CustomerScreenActivity extends ActionBarActivity {
         finish();
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        startActivity(new Intent(CustomerScreenActivity.this, MainActivity_.class));
+        finish();
+
+    }
+
     @Background
     public void fetchCustomer() {
         MainActivity.currentUser = kiosk.getLoggedInUser();
